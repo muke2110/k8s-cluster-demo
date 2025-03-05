@@ -1,0 +1,21 @@
+services:
+  node-app:
+    image: mukesh2110/node-app:latest
+    container_name: node_app_container
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: postgres-service
+      DB_USER: postgres
+      DB_PASSWORD: Muke2110
+      DB_NAME: test
+      DB_PORT: 5432
+    ports:
+      - "8081:8080"
+    volumes:
+      - .:/app
+    command: ["node", "server.js"]
+
+volumes:
+  pgdata:
